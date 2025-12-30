@@ -43,7 +43,7 @@ export default function BottomNavigation({activeSection}) {
               ${isActive ? "text-[#78530D] font-semibold" : "text-[#727479]"}
             `}
           >
-            <Icon className={`w-7 h-7 mb-1.5 transition-all duration-200 ${isActive ? "text-[#78530D]" : "text-[#727479]"}`} />
+            <Icon className={`w-7 h-7 mb-1.5 transition-all duration-200 ${isActive ? "text-[#78530D] stroke-[0.5px] stroke-[#78530D]" : "text-[#727479]"}`} />
             <span>{item.title}</span>
           </div>
         )
