@@ -31,7 +31,7 @@ export default function BottomNavigation({activeSection}) {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 w-full flex justify-center bg-white py-3 shadow-md">
+    <div className="fixed bottom-0 left-0 w-full flex justify-center bg-white py-3 shadow-md mont">
       {menu.map((item, index) => {
         const isActive = selected === index
         const Icon = item.icon

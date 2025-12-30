@@ -1,19 +1,41 @@
 "use client"
+import { useEffect } from "react"
 
-function HorizontalSlider({ activeSlide, children, onChange }) {
+function HorizontalSlider({
+  activeSlide,
+  children,
+  onChange,
+  type = "default",
+  interval = 4000,
+}) {
+  const totalSlides = children.length
 
-    const totalSlides = children.length
-
-    const handlePrev = () => {
+  const handlePrev = () => {
     if (activeSlide > 0) onChange(activeSlide - 1)
-    }
+  }
 
-    const handleNext = () => {
-    if (activeSlide < totalSlides - 1) onChange(activeSlide + 1)
+  const handleNext = () => {
+    if (activeSlide < totalSlides - 1) {
+      onChange(activeSlide + 1)
+    } else {
+      onChange(0) 
     }
+  }
+
+  useEffect(() => {
+    if (type !== "auto") return
+
+    const id = setInterval(() => {
+      onChange(
+        activeSlide < totalSlides - 1 ? activeSlide + 1 : 0
+      )
+    }, interval)
+
+    return () => clearInterval(id)
+  }, [type, activeSlide, totalSlides, interval, onChange])
+
   return (
-    <div className="relative w-auto h-screen overflow-hidden bg-purple-600">
-
+    <div className="relative w-screen h-screen overflow-hidden">
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{
@@ -23,7 +45,8 @@ function HorizontalSlider({ activeSlide, children, onChange }) {
         {children}
       </div>
 
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-5">
+      {type === "default" && (
+         <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-5">
             <button
             onClick={handlePrev}
             className="px-2 py-3 bg-white/70  cursor-pointer hover:bg-white"
@@ -45,7 +68,7 @@ function HorizontalSlider({ activeSlide, children, onChange }) {
 
         </button>
       </div>
-
+      )}
     </div>
   )
 }

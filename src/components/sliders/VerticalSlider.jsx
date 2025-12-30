@@ -2,7 +2,7 @@
 
 function VerticalSlider({activeSection, children}) {
   return (
-    <div className='w-full h-screen overflow-hidden  bg-gray-600'>
+    <div className='w-full h-screen overflow-hidden'>
             <div
                 className="transition-transform duration-500 ease-in-out"
                 style={{
