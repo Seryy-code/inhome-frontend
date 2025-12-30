@@ -25,6 +25,7 @@ const home_images = [homebg, homebg2]
 const aboutProjectData = {
   section: "aboutProject",
   pages: [
+    {
       type: 1,
       description: "InvestHome has reputation of reliable partner at Spain real estate market. Our motto - professional work with an individual approach. ",
       achievements_title: "WHAT WE ACHIEVED",

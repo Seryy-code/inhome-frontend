@@ -7,13 +7,11 @@ function AboutType3({ data }) {
     <img src={logo} alt="" className="max-w-[480px] mt-[4vh] mb-4 ml-[90px]"/>
     
     <div className="w-screen h-screen flex p-10 gap-10 ">
-      {/* Левая */}
       <div className="w-[30%] flex flex-col items-center ">
         <img src={data.partnerImage} className="mb-4" />
         <img src={data.partnerLogo} />
       </div>
 
-      {/* Правая */}
       <div className="w-[65%]">
         <p className="mb-6">{data.description}</p>
 
