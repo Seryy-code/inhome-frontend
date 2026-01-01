@@ -4,13 +4,14 @@ import PageRenderer from "../pages/PageRenderer"
 
 function ProjectSection({data}) {
 const [slide, setSlide] = useState(0)
+const filteredData = data.find(item => item.section === "aboutProject");
   return (
     <div className="w-full h-screen">  
         <HorizontalSlider activeSlide={slide} onChange={setSlide}>
-        {data.pages.map((page, index) => (
+        {filteredData.pages.map((page, index) => (
           <div key={index} className="w-screen h-screen flex-shrink-0">
             <PageRenderer
-              section={data.section}
+              section={filteredData.section}
               page={page}
             />
         </div>

@@ -17,9 +17,9 @@ function AboutType3({ data }) {
 
         <div className="grid grid-cols-3 gap-4">
           {data.partners.map((p, i) => (
-            <div key={i} className="text-center">
-              <img src={p.logo} className="mx-auto mb-2" />
-              <p>{p.text}</p>
+            <div key={i} className="flex flex-col justify-between text-center w-[280px] h-[170px]">
+              <img src={p.logo} className="mx-auto mb-2 max-w-full max-h-[120px]" />
+              <p className="mt-auto">{p.text}</p>
             </div>
           ))}
         </div>

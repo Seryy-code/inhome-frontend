@@ -2,9 +2,9 @@ import { useState } from "react"
 import HorizontalSlider from "../sliders/HorizontalSlider"
 import PageRenderer from "../pages/PageRenderer";
 
-function LocationSection({data}) {
+function PhotoSection({data}) {
 const [slide, setSlide] = useState(0)
-const filteredData = data.find(item => item.section === "location");
+const filteredData = data.find(item => item.section === "photo");
   return (
     <div className="w-full h-screen">  
         <HorizontalSlider activeSlide={slide} onChange={setSlide}>
@@ -21,4 +21,4 @@ const filteredData = data.find(item => item.section === "location");
   )
 }
 
-export default LocationSection
+export default PhotoSection
