@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import VerticalSlider from '@/components/sliders/VerticalSlider'
 import BottomNavigation from '@/components/BottomNavigation/BottomNavigation'
@@ -9,6 +9,7 @@ import ProjectSection from '@/components/section/ProjectSection'
 import MasterplanSection from './components/section/MasterplanSection'
 import AmenitiesSection from './components/section/AmenitiesSection'
 import PhotoSection from './components/section/PhotoSection'
+import Loader from './components/Loader/Loader'
 
 
 import homebg from "@/assets/homebg1.jpg"
@@ -35,11 +36,41 @@ import photo8_img from "@/images/photo8.jpg"
 import photo9_img from "@/images/photo9.jpg"
 
 
-import { list } from 'postcss'
-
 
 function App() {
 const [activeSection, setActiveSection] = useState(0)
+const [isLoading, setIsLoading] = useState(true)
+const [isExiting, setIsExiting] = useState(false)
+
+
+const ALL_IMAGES = [homebg, homebg2, about_bg_1, about_img, firm1, firm2, firm3, firm4, firm5, firm6, partner_logo, masterplan_img, amenities_img, photo1_img, photo2_img, photo3_img, photo4_img, photo5_img, photo6_img, photo7_img, photo8_img, photo9_img]
+
+const preloadImages = (images = []) => {
+  return Promise.all(
+    images.map(
+      (src) =>
+        new Promise((resolve) => {
+          const img = new Image()
+          img.src = src
+          img.onload = resolve
+          img.onerror = resolve 
+        })
+    )
+  )
+}
+
+useEffect(() => {
+  preloadImages(ALL_IMAGES).then(() => {
+    setTimeout(() => {
+      setIsExiting(true) 
+
+      setTimeout(() => {
+        setIsLoading(false) 
+      }, 800)
+    }, 800)
+  })
+}, [])
+
 const home_images = [homebg, homebg2]
 const data = [
   {
@@ -370,6 +401,7 @@ const data = [
 
   return (
     <>
+        {isLoading && <Loader isExiting={isExiting} />}
 
         <VerticalSlider activeSection={activeSection}> 
           <HomeSection type="auto" images={home_images}/>
