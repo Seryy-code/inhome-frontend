@@ -70,6 +70,23 @@ function HorizontalSlider({
         </button>
       </div>
       )}
+      {children.length != 1 && (
+        <div className="absolute bottom-22 left-1/2 -translate-x-1/2 flex gap-3 bg-[#00000020] p-3 rounded-2xl">
+          {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => onChange(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer
+                ${
+                  index === activeSlide
+                    ? "bg-white scale-110"
+                    : "bg-white/50 hover:bg-white"
+                }
+              `}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

@@ -10,6 +10,7 @@ import MasterplanSection from './components/section/MasterplanSection'
 import AmenitiesSection from './components/section/AmenitiesSection'
 import PhotoSection from './components/section/PhotoSection'
 import Loader from './components/Loader/Loader'
+import PaymentSection from './components/section/PaymentSection'
 
 
 import homebg from "@/assets/homebg1.jpg"
@@ -34,7 +35,7 @@ import photo6_img from "@/images/photo6.jpg"
 import photo7_img from "@/images/photo7.jpg"
 import photo8_img from "@/images/photo8.jpg"
 import photo9_img from "@/images/photo9.jpg"
-
+import payment_jpg from "@/images/payment.jpg"
 
 
 function App() {
@@ -43,7 +44,7 @@ const [isLoading, setIsLoading] = useState(true)
 const [isExiting, setIsExiting] = useState(false)
 
 
-const ALL_IMAGES = [homebg, homebg2, about_bg_1, about_img, firm1, firm2, firm3, firm4, firm5, firm6, partner_logo, masterplan_img, amenities_img, photo1_img, photo2_img, photo3_img, photo4_img, photo5_img, photo6_img, photo7_img, photo8_img, photo9_img]
+const ALL_IMAGES = [homebg, homebg2, about_bg_1, about_img, firm1, firm2, firm3, firm4, firm5, firm6, partner_logo, masterplan_img, amenities_img, photo1_img, photo2_img, photo3_img, photo4_img, photo5_img, photo6_img, photo7_img, photo8_img, photo9_img, payment_jpg]
 
 const preloadImages = (images = []) => {
   return Promise.all(
@@ -391,6 +392,23 @@ const data = [
         images: [photo8_img, photo9_img]
       },
     ]
+  },
+  {
+    section: "payment",
+    page: {
+      title: "Payment Structure",
+      image: payment_jpg,
+      input: {
+        min: 0,
+        max: 100000,
+      },
+      expenses:[
+        {title: "30% Payment (Private Contract)",
+        percent: 30},
+        {title: "20% Payment",
+        percent: 20},
+      ]
+    }
   }
 ]
 
@@ -410,6 +428,7 @@ const data = [
           <MasterplanSection data={data}/>
           <AmenitiesSection data={data} />
           <PhotoSection data={data} />
+          <PaymentSection data={data} />
         </VerticalSlider>
         <BottomNavigation activeSection={onChange}/>
     </>
