@@ -4,10 +4,11 @@ import { useState } from "react"
 import MasterplanImage from "./MasterplanComponents/MasterplanImage/MasterplanImage"
 import ApartmentsModal from "./MasterplanComponents/ApartmentsModal/ApartmentsModal"
 
-function MasterplanSection({ data }) {
+function MasterplanSection({ section }) {
   const [activeBlock, setActiveBlock] = useState(null)
-  const filteredData = data.find(item => item.section === "masterplan");
-  const apartmentsByBlock = filteredData.apartments.filter(
+  const { page } = section
+  
+  const apartmentsByBlock = section.apartments.filter(
     a => a.block_num === activeBlock
   )
 
@@ -15,7 +16,7 @@ function MasterplanSection({ data }) {
     <div className="w-screen h-screen relative overflow-hidden">
       
       <MasterplanImage
-        page={filteredData.page}
+        page={page}
         onSelectBlock={setActiveBlock}
       />
 

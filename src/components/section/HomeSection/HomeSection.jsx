@@ -1,15 +1,17 @@
 "use client"
 import { useState } from "react"
-import HorizontalSlider from "../sliders/HorizontalSlider"
+import HorizontalSlider from "../../sliders/HorizontalSlider"
 
-function HomeSection({ type = "default", images = [] }) {
+function HomeSection({ section  }) {
   const [activeSlide, setActiveSlide] = useState(0)
+  const { page } = section;
+  
 
-  if (type === "default") {
+  if (page.type === "default") {
     return (
       <div className="relative w-screen h-screen overflow-hidden bg-red-300">
         <img
-          src={images[0]}
+          src={page.images[0]}
           alt=""
           className="absolute w-full h-auto bottom-0"
         />
@@ -17,7 +19,7 @@ function HomeSection({ type = "default", images = [] }) {
     )
   }
 
-  if (type === "auto") {
+  if (page.type === "auto") {
     return (
       <HorizontalSlider
         activeSlide={activeSlide}
@@ -25,7 +27,7 @@ function HomeSection({ type = "default", images = [] }) {
         type="auto"
         interval={5000}
       >
-        {images.map((image, index) => (
+        {page.images.map((image, index) => (
           <div
             key={index}
             className="relative w-screen h-screen flex-shrink-0 overflow-hidden bg-red-300"

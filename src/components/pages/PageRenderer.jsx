@@ -11,7 +11,7 @@ import PhotoType3 from "./photo/Type3"
 import PhotoType4 from "./photo/Type4"
 
 const PAGE_MAP = {
-  aboutProject: {
+  project: {
     1: AboutType1,
     2: AboutType2,
     3: AboutType3,

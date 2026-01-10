@@ -3,18 +3,11 @@ import { useEffect, useState } from 'react'
 
 import VerticalSlider from '@/components/sliders/VerticalSlider'
 import BottomNavigation from '@/components/BottomNavigation/BottomNavigation'
-import HomeSection from '@/components/section/HomeSection'
-import LocationSection from '@/components/section/LocationSection'
-import ProjectSection from '@/components/section/ProjectSection'
-import MasterplanSection from './components/section/MasterplanSection'
-import AmenitiesSection from './components/section/AmenitiesSection'
-import PhotoSection from './components/section/PhotoSection'
 import Loader from './components/Loader/Loader'
-import PaymentSection from './components/section/PaymentSection'
+import PageRenderer from './components/section/PageRenderer'
 
-
-import homebg from "@/assets/homebg1.jpg"
-import homebg2 from "@/assets/homebg2.jpg"
+import homebg from "@/images/homebg1.jpg"
+import homebg2 from "@/images/homebg2.jpg"
 import about_bg_1 from "@/images/about-bg-1.jpg"
 import about_img from "@/images/about.jpg"
 import firm1 from "@/images/firm1.jpg"
@@ -39,7 +32,7 @@ import payment_jpg from "@/images/payment.jpg"
 
 
 function App() {
-const [activeSection, setActiveSection] = useState(0)
+const [activeIndex, setActiveIndex] = useState(0)
 const [isLoading, setIsLoading] = useState(true)
 const [isExiting, setIsExiting] = useState(false)
 
@@ -72,10 +65,16 @@ useEffect(() => {
   })
 }, [])
 
-const home_images = [homebg, homebg2]
 const data = [
   {
-  section: "aboutProject",
+    section: "home",
+    page: {
+      type: "auto",
+      images: [homebg, homebg2]
+    }
+  },
+  {
+  section: "project",
   pages: [
     {
       type: 1,
@@ -421,16 +420,10 @@ const data = [
     <>
         {isLoading && <Loader isExiting={isExiting} />}
 
-        <VerticalSlider activeSection={activeSection}> 
-          <HomeSection type="auto" images={home_images}/>
-          <ProjectSection data={data}/>
-          <LocationSection data={data}/>
-          <MasterplanSection data={data}/>
-          <AmenitiesSection data={data} />
-          <PhotoSection data={data} />
-          <PaymentSection data={data} />
+        <VerticalSlider activeSection={activeIndex}> 
+          <PageRenderer sections={data} />
         </VerticalSlider>
-        <BottomNavigation activeSection={onChange}/>
+        <BottomNavigation sections={data} activeIndex={activeIndex} onSelect={setActiveIndex}/>
     </>
   )
 }

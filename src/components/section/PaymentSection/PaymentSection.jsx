@@ -2,15 +2,15 @@
 
 import { useMemo, useState } from "react"
 
-function PaymentSection({ data }) {
-  const filteredData = data.find(item => item.section === "payment");
+function PaymentSection({ section }) {
+  const {page} = section
 
 
-  const [amount, setAmount] = useState(filteredData.page.input.min)
+  const [amount, setAmount] = useState(page.input.min)
 
   const totalExpensesPercent = useMemo(
-    () => filteredData.page.expenses.reduce((sum, e) => sum + e.percent, 0),
-    [filteredData.page.expenses]
+    () => page.expenses.reduce((sum, e) => sum + e.percent, 0),
+    [page.expenses]
   )
 
   const finalPercent = 100 - totalExpensesPercent
@@ -24,15 +24,15 @@ function PaymentSection({ data }) {
     <div className="w-screen h-screen flex items-center">
       <div className="max-w-[1920px] w-full h-full py-20 px-15 mx-auto flex justify-between">
         <div className="w-[40%]">
-          <h2 className="text-6xl text-[#78530D] tracking-widest mb-10 spectral">{filteredData.page.title}</h2>
+          <h2 className="text-6xl text-[#78530D] tracking-widest mb-10 spectral">{page.title}</h2>
           <div className="mb-10 flex flex-wrap justify-between">
             <label className="block mb-3 font-bold text-2xl">Price of the unit</label>
             
             <input
               type="number"
               value={amount}
-              min={filteredData.page.input.min}
-              max={filteredData.page.input.max}
+              min={page.input.min}
+              max={page.input.max}
               
               onChange={(e) => handleChange(+e.target.value)}
               className="px-4 py-2 min-w-[140px] text-center text-[#78530D] bg-[#f3eee4] text-lg"
@@ -40,13 +40,13 @@ function PaymentSection({ data }) {
 
             <input
                 type="range"
-                min={filteredData.page.input.min}
-                max={filteredData.page.input.max}
+                min={page.input.min}
+                max={page.input.max}
                 step={1000}
                 value={amount}
                 onChange={(e) => handleChange(+e.target.value)}
                 style={{
-                    backgroundSize: `${((amount - filteredData.page.input.min) * 100) / (filteredData.page.input.max - filteredData.page.input.min)}% 100%`,
+                    backgroundSize: `${((amount - page.input.min) * 100) / (page.input.max - page.input.min)}% 100%`,
                 }}
                 className="
                     w-full mt-6 h-2 appearance-none cursor-pointer rounded-full outline-none
@@ -79,7 +79,7 @@ function PaymentSection({ data }) {
 
           </div>
           <div className="space-y-6">
-            {filteredData.page.expenses.map((item, index) => (
+            {page.expenses.map((item, index) => (
               <div key={index} className="flex justify-between items-center pb-3 border-[#DBCBAB66] border-b-[1px]">
                 <span className="font-bold text-2xl">{item.title}</span>
                 <span className="bg-[#f3eee4] px-4 py-2 min-w-[140px] text-center text-[#78530D] text-lg ">
@@ -97,7 +97,7 @@ function PaymentSection({ data }) {
         </div>
         <div
           className="w-[55%] h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${filteredData.page.image})` }}
+          style={{ backgroundImage: `url(${page.image})` }}
         />
       </div>
     </div>

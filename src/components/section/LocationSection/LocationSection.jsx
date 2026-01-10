@@ -1,17 +1,17 @@
 import { useState } from "react"
-import HorizontalSlider from "../sliders/HorizontalSlider"
-import PageRenderer from "../pages/PageRenderer";
+import HorizontalSlider from "../../sliders/HorizontalSlider"
+import PageRenderer from "../../pages/PageRenderer";
 
-function AmenitiesSection({data}) {
+function LocationSection({section}) {
 const [slide, setSlide] = useState(0)
-const filteredData = data.find(item => item.section === "amenities");
+const { pages } = section;
   return (
     <div className="w-full h-screen">  
         <HorizontalSlider activeSlide={slide} onChange={setSlide}>
-        {filteredData.pages.map((page, index) => (
+        {pages.map((page, index) => (
           <div key={index} className="w-screen h-screen flex-shrink-0">
             <PageRenderer
-              section={filteredData.section}
+              section={section.section}
               page={page}
             />
         </div>
@@ -21,4 +21,4 @@ const filteredData = data.find(item => item.section === "amenities");
   )
 }
 
-export default AmenitiesSection
+export default LocationSection
