@@ -1,4 +1,8 @@
 function PhotoType3({ data }) {
+  if (!data || !data.images || !Array.isArray(data.images) || data.images.length < 3) {
+    return null;
+  }
+
   return (
     <div className="flex justify-between gap-5 w-screen h-screen relative px-10 pt-15 ">
         <div

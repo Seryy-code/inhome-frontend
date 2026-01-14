@@ -1,4 +1,8 @@
 function AmenitiesType1({ data }) {
+  if (!data || !data.have || !Array.isArray(data.have)) {
+    return null;
+  }
+
   return (
     <div className="w-screen h-[94vh] flex p-20">
       <div className="w-[40%] flex flex-col  pb-2">

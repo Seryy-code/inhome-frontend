@@ -8,7 +8,7 @@ function MasterplanSection({ section }) {
   const [activeBlock, setActiveBlock] = useState(null)
   const { page } = section
   
-  const apartmentsByBlock = section.apartments.filter(
+  const apartmentsByBlock = (page?.apartments || []).filter(
     a => a.block_num === activeBlock
   )
 

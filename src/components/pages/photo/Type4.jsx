@@ -1,4 +1,8 @@
 function PhotoType4({ data }) {
+  if (!data || !data.images || !Array.isArray(data.images) || data.images.length < 2) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col w-screen h-screen px-10 pt-15 gap-5">
 

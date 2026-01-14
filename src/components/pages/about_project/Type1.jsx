@@ -1,6 +1,10 @@
 import logo from "@/assets/logo.svg"
 
 function AboutType1({ data }) {
+  if (!data || !data.achievements || !Array.isArray(data.achievements)) {
+    return null;
+  }
+
   return (
     <div className="w-screen h-screen flex ">
       <div className="w-[40%] p-10 flex flex-col gap-6">

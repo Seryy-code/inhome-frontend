@@ -1,4 +1,8 @@
 function AboutType2({ data }) {
+  if (!data || !data.stats || !Array.isArray(data.stats)) {
+    return null;
+  }
+
   return (
     <div className="w-screen h-screen flex flex-col spectral ">
       

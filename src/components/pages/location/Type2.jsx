@@ -1,4 +1,8 @@
 function LocationType2({ data }) {
+  if (!data || !data.categories || !Array.isArray(data.categories)) {
+    return null;
+  }
+
   return (
     <div className="w-screen min-h-screen flex flex-col px-10 py-14">
       

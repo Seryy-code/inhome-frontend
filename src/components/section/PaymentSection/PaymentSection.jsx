@@ -97,7 +97,7 @@ function PaymentSection({ section }) {
         </div>
         <div
           className="w-[55%] h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${page.image})` }}
+          style={{ backgroundImage: `url(${page.images[0]})` }}
         />
       </div>
     </div>
