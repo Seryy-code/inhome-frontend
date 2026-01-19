@@ -1,24 +1,38 @@
-FROM node:20-alpine
+# Этап сборки
+FROM node:20-alpine as build
 
 WORKDIR /app
 
 # Копируем package.json и package-lock.json
 COPY package*.json ./
 
-# Устанавливаем ВСЕ зависимости (включая dev для сборки)
+# Устанавливаем зависимости
 RUN npm install
 
-# Копируем остальные файлы
+# Копируем остальные файлы проекта
 COPY . .
 
-# Создаем директорию для загрузок
-RUN mkdir -p /app/uploads
-
-# Собираем Next.js приложение
+# Собираем Vite приложение
 RUN npm run build
 
-# Открываем порт
-EXPOSE 3000
+# Продакшен этап
+FROM nginx:alpine
 
-# Запускаем продакшен сервер
-CMD ["npm", "start"]
+# Копируем собранные файлы из этапа сборки
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Копируем конфигурацию nginx для SPA
+RUN echo 'server { \
+    listen 80; \
+    location / { \
+        root /usr/share/nginx/html; \
+        index index.html; \
+        try_files $uri $uri/ /index.html; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
+
+# Открываем порт
+EXPOSE 80
+
+# Запускаем nginx
+CMD ["nginx", "-g", "daemon off;"]
