@@ -1,4 +1,4 @@
-import LoadingLogo from "@/images/loading.png"
+import LoadingLogo from "@/assets/loading.png"
 import styles from "./Loader.module.scss"
 
 export default function Loader({ isExiting }) {
