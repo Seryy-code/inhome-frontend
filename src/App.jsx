@@ -2,11 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AuthProvider from '@/providers/AuthProvider'
 import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute'
 
-import HomePage from '@/pages/Home/HomePage'
-import SliderListPage from '@/pages/SliderList/SliderListPage'
-import LoginPage from '@/pages/Login/LoginPage'
-import ForgotPasswordPage from '@/pages/ForgotPassword/ForgotPasswordPage'
-import ResetPasswordPage from '@/pages/ResetPassword/ResetPasswordPage'
+import HomePage from '@/app/home/HomePage'
+import PropertyPage from '@/app/property/PropertyPage'
+import LoginPage from '@/app/login/LoginPage'
+import ForgotPasswordPage from '@/app/forgot-password/ForgotPasswordPage'
+import ResetPasswordPage from '@/app/reset-password/ResetPasswordPage'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             path="/" 
             element={
               <ProtectedRoute>
-                <SliderListPage />
+                <HomePage />
               </ProtectedRoute>
             } 
           />
@@ -28,7 +28,7 @@ function App() {
             path="/property-slides-test/:slug" 
             element={
               <ProtectedRoute>
-                <HomePage />
+                <PropertyPage />
               </ProtectedRoute>
             } 
           />

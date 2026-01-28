@@ -1,7 +1,9 @@
 import logo from "@/assets/logo.svg"
 
 function AboutType1({ data }) {
-  if (!data || !data.achievements || !Array.isArray(data.achievements)) {
+    
+    
+  if (!data) {
     return null;
   }
 
@@ -13,12 +15,14 @@ function AboutType1({ data }) {
         <div className="max-w-120 mx-auto px-2 h-full">
         <p className="spectral text-2xl mt-[10vh] mb-[7vh] text-[#2F230D]">{data.description}</p>
 
-        <ul className="list-disc pl-5">
+        {data.achievements && data.achievements.length > 0 && (
+          <ul className="list-disc pl-5">
             <h1 className="text-4xl font-normal mb-[40px]">{data.achievements_title}</h1>
-          {data.achievements.map((item, i) => (
-            <li className="text-lg leading-10" key={i}>{item}</li>
-          ))}
-        </ul>
+            {data.achievements.map((item, i) => (
+              <li className="text-lg leading-10" key={i}>{item}</li>
+            ))}
+          </ul>
+        )}
         </div>
       </div>
 
