@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApi } from '@/utils/useApi';
 import { useAuth } from '@/hooks/useAuth';
+import SliderCard from "@/components/SliderCard/SliderCard";
 import icon from "../../assets/logo.svg";
 
 export default function HomePage() {
@@ -91,36 +92,13 @@ export default function HomePage() {
               <p className="text-gray-600">No sliders available</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className={'px-4 md:px-0 container  mx-auto grid grid-cols-1 md:grid-cols-2 gap-6'}>
               {sliders.map((slider) => (
-                <div
+                <SliderCard 
                   key={slider.id}
+                  slider={slider}
                   onClick={() => handleSelectSlider(slider)}
-                  className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow"
-                >
-                  {slider.thumbnail && (
-                    <img
-                      src={slider.thumbnail}
-                      alt={slider.title}
-                      className="w-full h-48 object-cover"
-                    />
-                  )}
-                  <div className="p-6">
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">
-                      {slider.title || slider.name}
-                    </h2>
-                    {slider.description && (
-                      <p className="text-gray-600 text-sm mb-4">
-                        {slider.description}
-                      </p>
-                    )}
-                    <div className="text-sm text-gray-500">
-                      <span className="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                        {slider.slug}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                />
               ))}
             </div>
           )}
